@@ -1,5 +1,5 @@
 # This program calculates the simple interest.
-# Formula: I = (P * R * T)
+# Formula: I = (R * T * P)
 # ( I ) is the interest earned,
 # ( P ) is the principal amount (initial investment),
 # ( R ) is the annual interest rate (as a decimal),
