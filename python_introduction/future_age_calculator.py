@@ -6,6 +6,11 @@
 
 current_year = 2023
 future_year = 2050
-current_age = int(input("Enter your current age: "))
+user_input = input("How old are you? ")
+
+while not user_input.isdigit():
+    user_input = input("How old are you? ")
+
+current_age = int(user_input)
 age_in_2050 = current_age + (future_year - current_year)
 print("In 2050 you will be", age_in_2050, "years old.")
