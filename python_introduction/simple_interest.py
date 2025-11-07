@@ -10,4 +10,4 @@ rate = 0.05  # 5% interest rate
 time = 3  # in years
 
 interest = (principal * rate * time)
-print("The simple Interest is:", interest)
+print("The simple interest is:", interest)
