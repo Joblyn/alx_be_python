@@ -9,5 +9,5 @@ principal = 1000 # principal amount in $
 rate = 0.05  # 5% interest rate
 time = 3  # in years
 
-interest = (principal * rate * time)
+interest = rate * time * principal
 print("The simple interest is:", interest)
