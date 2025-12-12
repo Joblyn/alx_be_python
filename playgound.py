@@ -1,9 +1,24 @@
 import unittest
+import json
+import pickle
 
 class Student:
   def __init__(self, name, age) -> None:
     self.name = name
     self.age = age
+
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+  
+  @classmethod
+  def create_child(cls, name):
+    """Class method factory to create a child with age set to 0."""
+    return cls(name, 0)
+  
+  def __str__(self):
+    return f"Person(name='{self.name}', age={self.age})"
 
 class Product:
   def __init__(self, name, price, quantity) -> None:
@@ -82,6 +97,60 @@ def square_of_number(x):
   # intentional bug for testing:
   return x + x
 
+# Sample Python object
+data = {
+  "name": "Alice",
+  "age": 30,
+  "city": "New York"
+}
+
+# Serialize the object to a JSON string
+json_string = json.dumps(data)
+
+# Optionally, write the JSON string to a file
+with open('data.json', 'w') as file:
+  json.dump(data, file)
+
+# Deserialize the JSON string back to a Python object
+data = json.loads(json_string)
+# Or read from a file and deserialize
+with open('data.json', 'r') as file:
+  data = json.load(file)
+print(data)
+
+# Serialization using pickle
+# Sample python object
+data = {
+  "name": "Bob",
+  "age": 25,
+  "city": "Los Angeles"
+}
+# Serialize the object to a file
+with open('data.pkl', 'wb') as file:
+  pickle.dump(data, file)
+  
+# Deserialization with pickle
+with open('data.pkl', 'rb') as file:
+  loaded_data = pickle.load(file)
+  print(loaded_data)
+  
+def process_json(data: dict, filename: str) -> dict:
+    """
+      Takes a dictionary (data) and a filename (filename) as input.
+      Serializes the dictionary to a JSON file with the given filename.
+      Deserializes the JSON file back into a dictionary.
+      Returns the deserialized dictionary.
+    """
+    
+    # serialize to JSON file
+    with open(filename, 'w') as file:
+      json.dump(data, file)
+      
+    # deserialize from JSON file
+    with open(filename, 'r') as file:
+      loaded_data = json.load(file)
+      return loaded_data
+
 class TestSquareOfNumber(unittest.TestCase):
   def test_square_of_number(self):
     self.assertEqual(square_of_number(3), 9)
@@ -92,6 +161,8 @@ class TestSquareOfNumber(unittest.TestCase):
   # test valid input
   def test_square_of_number_zero(self):
     self.assertEqual(square_of_number(0), 0)
+  
+  
   
 if __name__ == "__main__":
   unittest.main()
